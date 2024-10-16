@@ -1,0 +1,47 @@
+@baseUrl=https://localhost:7296
+@applicationId=test-app
+
+### Create Student Request:
+# @name createStudentRequest
+
+POST {{baseUrl}}/Student
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Student",
+  "id": "Test",
+  "name": "Fake0001",
+  "email": "fake0001@gmail.com",
+  "address": "fake address 001",
+  "phone": "3452189"
+}
+
+
+### Get Student Request:
+@eduId = {{createStudentRequest.response.body.$.id}}
+# @name getStudentRequest
+GET {{baseUrl}}/Student/{{eduId}}
+X-Ihis-SourceApplication: {{applicationId}}
+
+### Update Student Request:
+# @name updateStudentRequest
+
+PUT {{baseUrl}}/Student/{{eduId}}
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Student",
+  "id": "{{eduId}}",
+  "subject": { "reference": "Practitioner/donn" },
+  "institute": { "reference": "Organization/synapxe" },
+  "study": "Geology",
+  "graduatedDate": "2008-03-21"
+}
+
+      
+### Search Cancelled Appointment Request:
+# @name searchCancelledAppointmentRequest
+GET {{baseUrl}}/Student?institute=Organization/synapxe
+X-Ihis-SourceApplication: {{applicationId}}

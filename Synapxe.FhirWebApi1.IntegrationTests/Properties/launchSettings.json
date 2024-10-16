@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Synapxe.FhirWebApi1.IntegrationTests": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:59051;http://localhost:59052"
+    }
+  }
+}
